@@ -7,11 +7,16 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import { spawn, Worker } from 'threads'
 
 export default {
   name: 'App',
   components: {
     HelloWorld
+  },
+  async mounted() {
+    const worker = await spawn(new Worker('./worker'))
+    worker.test()
   }
 }
 </script>
